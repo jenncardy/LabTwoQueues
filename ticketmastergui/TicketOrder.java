@@ -19,10 +19,8 @@ public class TicketOrder
    private final int RANDOM_MAX1 = 99;
    
    private final int RANDOM_MIN2 = 1000;
-   //private final int RANDOM_MAX2 = 9999;
-   private final int ID_SUFFIX_MAX = 9999;
-   private final int ID_SUFFIX_MIN = 1000;
-   private static int sequentialNumber = 0;
+   private final int RANDOM_MAX2 = 9999;
+
    
    /**
    */
@@ -30,8 +28,6 @@ public class TicketOrder
    public TicketOrder(String customerName, int numRequested)
    {
       String name;
-      int idSuffix1;
-      int idSuffix2;
    
       this.customerName = customerName;
       this.numRequested = numRequested;
@@ -42,19 +38,9 @@ public class TicketOrder
       // provides a random suffix to the Order ID
       Random randomNo = new Random();
       
-      idSuffix1 = randomNo.nextInt((RANDOM_MAX1 - RANDOM_MIN1) + 1)+RANDOM_MIN1;
-      
-      //int idSuffix2 = randomNo.nextInt((RANDOM_MAX2 - RANDOM_MIN2) + 1)+RANDOM_MIN2;
-      if (sequentialNumber >= ID_SUFFIX_MAX || sequentialNumber == 0)
-      {
-         sequentialNumber = ID_SUFFIX_MIN;
-      }
-      else
-         {
-            sequentialNumber = sequentialNumber + 1;
-         }
-      
-      idSuffix2 = sequentialNumber;
+      int idSuffix1 = randomNo.nextInt((RANDOM_MAX1 - RANDOM_MIN1) + 1)+RANDOM_MIN1;
+      int idSuffix2 = randomNo.nextInt((RANDOM_MAX2 - RANDOM_MIN2) + 1)+RANDOM_MIN2;
+
       
       if (customerName.length() < 2)
       {
@@ -64,8 +50,7 @@ public class TicketOrder
       {
          name = customerName.substring(0, 2);
       }
-      
-      // Order Id consists of the date, time, name, quantity, a random number and a sequential number
+      // Order Id consists of the date, time, name, quantity and a random number
       orderID = now.format(DateTimeFormatter.ofPattern("yyyy-MMdd-HHmm-")) + name.toUpperCase()+idSuffix1+"-"+ idSuffix2;   
                            
    }  
