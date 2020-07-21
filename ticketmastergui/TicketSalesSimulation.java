@@ -48,8 +48,10 @@ public class TicketSalesSimulation
       Thread t = new Thread(tq);
       t.setName("Ticket Queue");
       t.start();
+     
       
-		EventQueue.invokeLater(new Runnable() {
+      EventQueue.invokeLater(new Runnable() 
+      {
 			public void run() 
          {
 				try 
@@ -64,6 +66,7 @@ public class TicketSalesSimulation
 			}
 		});     
    }
+   
 
     /**
 	 * Create the application.
@@ -164,6 +167,10 @@ public class TicketSalesSimulation
                   name.setText(" ");
                   quantity.setText(" ");
                   
+                  frmTicketMaster.setVisible(false);
+                                   
+                  frmTicketMaster.dispose();
+                                  
                   EventQueue.invokeLater(new Runnable() 
                   {
 			            public void run() 
@@ -175,11 +182,12 @@ public class TicketSalesSimulation
 				         } 
                      catch (Exception e) 
                      {
-					       e.printStackTrace();
+					         e.printStackTrace();                
 				         }
-			          }
-		           });
-                 initialize(orderQueue, tq);
+			         }
+		          });
+                                
+                initialize(orderQueue, tq);
                }
                else
                {               
@@ -215,10 +223,12 @@ public class TicketSalesSimulation
 		gbc_btnCancel.gridy = 5;
 		frmTicketMaster.getContentPane().add(btnCancel, gbc_btnCancel);
       btnCancel.addActionListener(new ActionListener() 
-         {
+      {
             public void actionPerformed(ActionEvent e) 
             {
                tq.doStop();
+               frmTicketMaster.setVisible(false);
+               frmTicketMaster.dispose();
                System.exit(0);
             }
 		 });
@@ -255,17 +265,17 @@ public class TicketSalesSimulation
       //String quantityStr = quantity.getText();
       
       try 
-		   {
-           intQty = Integer.parseInt(quantity.getText());
-           if (intQty > 0)
-           {
-	   	      return true;
-           }
-		   }
+		{
+        intQty = Integer.parseInt(quantity.getText());
+        if (intQty > 0)
+        {
+	       return true;
+        }
+		}
 		catch (NumberFormatException exe)
-		 	   {
+		{
 				   return false;
-			   }
+		}
       return false;      
    }
 }

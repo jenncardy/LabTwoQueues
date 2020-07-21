@@ -65,11 +65,16 @@ public class TicketQueue implements Runnable
     public void checkQueue()
     {
       if (orderQueue.isEmpty())
-         System.out.println("No orders to process");
-      else
       {
-          processOrder();            
-      }    
+         System.out.println("No orders to process");
+      }   
+      else
+         {
+            while (!orderQueue.isEmpty())
+            {
+               processOrder();
+            }               
+         }    
     }
     
     public int getAvailableTickets()
