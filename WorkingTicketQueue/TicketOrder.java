@@ -4,6 +4,11 @@ import java.util.Random;
 import ch04.queues.*;
 import support.LLNode;
 
+/**
+* The TicketOrder class accepts a customer name and quantity of tickets
+* being requested and generates a unique order ID.
+*/
+
 public class TicketOrder
 {
    private String customerName;
@@ -22,7 +27,9 @@ public class TicketOrder
    private final int ID_SUFFIX_MIN = 1000;
    private static int sequentialNumber = 0;
    
-   /**
+   //**
+   *  Constructor accepts a customer name and number of tickets requested and
+   *  generates a unique ID for the order.
    */
 
    public TicketOrder(String customerName, int numRequested)
@@ -37,12 +44,11 @@ public class TicketOrder
       // provides Date/Time Stamp to the Order ID for uniqueness
       LocalDateTime now = LocalDateTime.now();
 
-      // provides a random suffix to the Order ID
+      // provides a random suffix for the end of the order ID
       Random randomNo = new Random();
       
       idSuffix1 = randomNo.nextInt((RANDOM_MAX1 - RANDOM_MIN1) + 1)+RANDOM_MIN1;
       
-      //int idSuffix2 = randomNo.nextInt((RANDOM_MAX2 - RANDOM_MIN2) + 1)+RANDOM_MIN2;
       if (sequentialNumber >= ID_SUFFIX_MAX || sequentialNumber == 0)
       {
          sequentialNumber = ID_SUFFIX_MIN;
@@ -63,7 +69,8 @@ public class TicketOrder
          name = customerName.substring(0, 2);
       }
       
-      // Order Id consists of the date, time, name, quantity, a random number and a sequential number
+      // Order ID consists of the date, time, name, quantity, a random 
+      // number and a sequential number
       orderID = now.format(DateTimeFormatter.ofPattern("yyyy-MMdd-HHmm-")) + name.toUpperCase()+idSuffix1+"-"+ idSuffix2;   
                            
    }  
