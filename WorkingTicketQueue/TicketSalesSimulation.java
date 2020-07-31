@@ -2,6 +2,11 @@ import javax.swing.JOptionPane;
 import ch04.queues.*;
 import support.LLNode;
 
+/**
+*  TicketSalesSimulation simulates a ticket-sales program.  Users are
+*  prompted to input their name and the number of tickets they wish to
+*  purchase and creates an order queue.
+*/
 
 public class TicketSalesSimulation
 {
@@ -18,7 +23,11 @@ public class TicketSalesSimulation
       
       do 
       {
-         String input = JOptionPane.showInputDialog("Enter your name and number of tickets you'd like to purchase.");
+         String input = JOptionPane.showInputDialog("Enter your name and number of tickets you'd like to purchase." +
+                                                    "you'd like to purchase.\n" +
+                                                    "Separate your name from the ticket number with a " +
+                                                      "colon like this:  James:4\n" +
+                                                      "Type STOP to stop program.");
          System.out.println(input);
          if (input.equals("STOP"))
          {
