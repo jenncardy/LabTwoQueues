@@ -22,7 +22,6 @@ public class TicketOrder
    private final int RANDOM_MAX1 = 99;
    
    private final int RANDOM_MIN2 = 1000;
-   //private final int RANDOM_MAX2 = 9999;
    private final int ID_SUFFIX_MAX = 9999;
    private final int ID_SUFFIX_MIN = 1000;
    private static int sequentialNumber = 0;
